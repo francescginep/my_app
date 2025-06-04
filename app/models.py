@@ -58,3 +58,12 @@ class Payment(Base):
     success = Column(Boolean, default=True)
 
     user = relationship("User", back_populates="payments")
+
+    
+class Session(Base):
+    __tablename__ = "sessions"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
+    store_id = Column(UUID(as_uuid=True), ForeignKey("stores.id"))
+    start_time = Column(DateTime, default=datetime.utcnow)

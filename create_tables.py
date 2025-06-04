@@ -1,5 +1,3 @@
-# create_tables.py (en la raíz del proyecto)
-
 from app.database import Base, engine
 import app.models  # para que SQLAlchemy conozca todas las clases de modelo
 

@@ -2,6 +2,9 @@ from pydantic import BaseModel, UUID4
 from typing import Optional, List
 from datetime import datetime
 
+class StartSessionRequest(BaseModel):
+    user_id: UUID4
+    store_id: UUID4
 
 class AddToCartRequest(BaseModel):
     session_id: str

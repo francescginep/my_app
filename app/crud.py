@@ -3,7 +3,17 @@ from . import models, schemas
 import uuid
 from datetime import datetime
 
-
+def create_session(db: Session, user_id: uuid.UUID, store_id: uuid.UUID):
+    new_session = models.Session(
+        id=uuid.uuid4(),
+        user_id=user_id,
+        store_id=store_id,
+        start_time=datetime.utcnow()
+    )
+    db.add(new_session)
+    db.commit()
+    db.refresh(new_session)
+    return new_session
 # ---- USERS ----
 def get_user(db: Session, user_id: uuid.UUID):
     return db.query(models.User).filter(models.User.id == user_id).first()
